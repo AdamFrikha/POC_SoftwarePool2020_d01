@@ -34,7 +34,7 @@ function startServer() {
     if (req.cookies.message) res.send(req.cookies.message);
     else res.sendStatus(400);
   });
-  app.get('/repeat-my-params/:message', (req, res) => {
+  app.get('/repeat-my-param/:message', (req, res) => {
     res.send(req.params.message);
   });
 }
