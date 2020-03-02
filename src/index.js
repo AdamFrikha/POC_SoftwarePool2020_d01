@@ -1,13 +1,11 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const headerParser = require('header-parser');
 const cookieParser = require('cookie-parser');
 
 function startServer() {
   const app = express();
   app.use(bodyParser.text());
-  app.use(headerParser);
-  app.use(cookieParser);
+  app.use(cookieParser());
   app.get('/hello', (req, res) => {
     res.send('world');
   });
@@ -23,7 +21,7 @@ function startServer() {
     else res.sendStatus(400);
   });
   app.get('/repeat-my-header', (req, res) => {
-    if (req.header.message) res.send(req.header.message);
+    if (req.header('X-Message')) res.send(req.header('X-Message'));
     else res.sendStatus(400);
   });
   app.get('/repeat-my-cookie', (req, res) => {
