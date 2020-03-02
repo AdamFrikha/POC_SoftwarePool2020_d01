@@ -13,6 +13,12 @@ function startServer() {
     else
       res.sendStatus(400);
   });
+  app.post('/repeat-my-body', (req, res) => {
+    if(req.query.body)
+      res.send(req.query.body);
+    else
+      res.sendStatus(400);
+  });
   app.listen(8080);
 }
 
