@@ -1,6 +1,9 @@
+const express = require('express');
+const bodyParser = require('body-parser');
+
 function startServer() {
-  const express = require('express');
   const app = express();
+  app.use(bodyParser.text());
   app.get('/hello', (req, res) => {
     res.send('world');
   });
@@ -14,8 +17,8 @@ function startServer() {
       res.sendStatus(400);
   });
   app.post('/repeat-my-body', (req, res) => {
-    if(req.query.body)
-      res.send(req.query.body);
+    if(req.body)
+      res.send(req.body);
     else
       res.sendStatus(400);
   });
