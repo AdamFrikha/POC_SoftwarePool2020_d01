@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 require('dotenv').config({ path: './env.example' });
 const port = process.env.SERVER_PORT;
+const fixed = process.env.FIXED_MESSAGE;
 
 function startServer() {
   const app = express();
@@ -14,7 +15,8 @@ function startServer() {
     res.send('world');
   });
   app.get('/repeat-my-fixed', (req, res) => {
-    res.sendStatus(200);
+    if (fixed) res.send(fixed).status(200);
+    else res.send('No Message Defined').status(404);
   });
   app.get('/repeat-my-query', (req, res) => {
     if (req.query.message) res.send(req.query.message);
