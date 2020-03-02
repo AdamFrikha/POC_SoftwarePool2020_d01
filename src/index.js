@@ -28,6 +28,9 @@ function startServer() {
     if (req.cookies.message) res.send(req.cookies.message);
     else res.sendStatus(400);
   });
+  app.get('/repeat-my-params/:message', (req, res) => {
+    res.send(req.params.message);
+  });
   app.listen(8080);
 }
 
