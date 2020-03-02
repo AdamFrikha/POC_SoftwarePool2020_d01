@@ -1,11 +1,15 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+require('dotenv').config({ path: './env.exemple' });
+const port = process.env.SERVER_PORT;
 
 function startServer() {
   const app = express();
   app.use(bodyParser.text());
   app.use(cookieParser());
+  if (port) app.listen(port)
+  else app.listen(8080);
   app.get('/hello', (req, res) => {
     res.send('world');
   });
@@ -31,7 +35,6 @@ function startServer() {
   app.get('/repeat-my-params/:message', (req, res) => {
     res.send(req.params.message);
   });
-  app.listen(8080);
 }
 
 startServer();
