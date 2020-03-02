@@ -8,7 +8,10 @@ function startServer() {
     res.sendStatus(200);
   });
   app.get('/repeat-my-query', (req, res) => {
-    res.send(req.query.id);
+    if(req.query.message)
+      res.send(req.query.message);
+    else
+      res.sendStatus(400);
   });
   app.listen(8080);
 }
