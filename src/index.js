@@ -7,6 +7,7 @@ const fixed = process.env.FIXED_MESSAGE;
 
 function startServer() {
   const app = express();
+  console.log('Ready.');
   app.use(bodyParser.text());
   app.use(cookieParser());
   if (port) app.listen(port)
